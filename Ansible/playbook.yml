@@ -1,0 +1,8 @@
+- hosts: aws
+  tasks:
+  - name: criando o index do servidor web
+    copy:
+      dest: /home/ubuntu/index.html
+      content: <h1>Este arquivo foi criado usando o Ansible</h1>
+  - name: criando o servidor web
+    shell:  "nohup busybox httpd -f -p 8080 &"

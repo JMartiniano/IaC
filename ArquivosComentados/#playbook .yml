@@ -1,0 +1,14 @@
+# Definindo os hosts que serão afetados
+- hosts: vms-aws
+  # Iniciando as tarefas que serão executadas
+  tasks:
+  - name: criando o index do servidor web
+    # Usamos a tarefa copy para criar o arquivo
+    copy: 
+      # O parâmetro dest contêm o path e nome do arquivo novo
+      dest: /home/ubuntu/index.html
+      content: <h1>Este arquivo foi criado usando o Ansible</h1>
+  # Iniciando uma nova tarefa para criar o servidor
+  - name: criando o servidor web
+    # Para passar comandos no terminal da VM usamos o parâmetro shell
+    shell:  "nohup busybox httpd -f -p 8080 &"
